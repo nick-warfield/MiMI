@@ -1,20 +1,19 @@
 use std::{thread, time};
-use monad;
-use monad::monad::{once, empty, bind};
+use monad::monad::{once, bind};
 
 fn main()
 {
 	let dur = time::Duration::new(0, 150_000_000);
-	let mut factors = bind(
+	let factors = bind(
 		1..,
 		|x| once(format!("\nNumber: {}", x))
 			.chain(factor_iter(x)
-				   .map(|num| format!("\tFactor: {}", num)))
+				.map(|num| format!("\tFactor: {}", num)))
 		);
 	
-	loop
+	for s in factors
 	{
-		println!("{}", factors.next().unwrap());
+		println!("{}", s);
 		thread::sleep(dur);
 	}
 }
