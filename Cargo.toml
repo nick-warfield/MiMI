@@ -9,4 +9,8 @@ edition = "2018"
 name = "factors"
 path = "src/factors.rs"
 
+[[bin]]
+name = "ast"
+path = "src/ast.rs"
+
 [dependencies]
