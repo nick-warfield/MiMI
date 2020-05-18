@@ -38,25 +38,16 @@ pub mod monad
 		}
 	}
 
-	pub fn bind<T, U, F>(
-		mut iterator: T,
-		function: F,
-		) -> Bind<T, U, F>
+	pub fn bind<T, U, F>(mut iterator: T, function: F) -> Bind<T, U, F>
 	where
-		T: Iterator,
-		U: Iterator,
-		F: Fn(T::Item) -> U,
-	{
-		if let Some(next) = iterator.next()
-		{
+		T: Iterator, U: Iterator, F: Fn(T::Item) -> U {
+		if let Some(next) = iterator.next() {
 			Bind {
 				input : iterator,
 				output: Some((function)(next)),
 				func: function,
 			}
-		}
-		else
-		{
+		} else {
 			Bind {
 				input: iterator,
 				output: None,

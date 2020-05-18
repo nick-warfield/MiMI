@@ -14,3 +14,4 @@ name = "ast"
 path = "src/ast.rs"
 
 [dependencies]
+rand = "0.5.5"
